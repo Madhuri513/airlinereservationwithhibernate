@@ -44,11 +44,11 @@ public class LoginController {
 		
 		log.info("************************************Welcome to Airline Reservation System**********************************");
 		log.info("                          --------------Available Flights details are ----------------");
+
+		List<FlightDetails> records = service.getFlightDetails();
 		log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
 				"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "CAPACITY",
 				"TICKET_PRICE"));
-
-		List<FlightDetails> records = service.getFlightDetails();
 		for (FlightDetails details : records) {
 			log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s", details.getFlightId(),
 					details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
@@ -78,9 +78,15 @@ public class LoginController {
 
 					try {
 						List<FlightDetails> search = service.searchFlightBySourceAndDestination(source1, destination1);
+						log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
+								"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "CAPACITY",
+								"TICKET_PRICE"));
 						if (search != null) {
 							for (FlightDetails details : search) {
-								log.info(details);
+								log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s", details.getFlightId(),
+										details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
+										details.getDepartureTime(), details.getDepartureDate(), details.getSeats(),
+										details.getPrice()));
 							}
 						}
 					} catch (AirlineSystemException e) {

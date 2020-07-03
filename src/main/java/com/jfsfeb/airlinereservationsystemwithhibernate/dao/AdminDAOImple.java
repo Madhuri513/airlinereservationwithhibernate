@@ -40,7 +40,6 @@ public class AdminDAOImple implements AdminDAO {
 			transaction.rollback();
 		} finally {
 			entityManager.close();
-			entityManagerFactory.close();			
 		}
 		throw new AirlineSystemException("Invalid details");		
 	}
@@ -73,7 +72,6 @@ public class AdminDAOImple implements AdminDAO {
 			transaction.rollback();
 		}
 		entityManager.close();
-		entityManagerFactory.close();
 		throw new AirlineSystemException("Invalid details");
 	}
 
@@ -96,7 +94,6 @@ public class AdminDAOImple implements AdminDAO {
 			transaction.rollback();
 		} finally {
 			entityManager.close();
-			entityManagerFactory.close();
 		}
 		return false;
 	}
@@ -123,7 +120,6 @@ public class AdminDAOImple implements AdminDAO {
 		TypedQuery<FlightDetails> query = entityManager.createQuery(jpql, FlightDetails.class);
 		List<FlightDetails> recordList = query.getResultList();
 		entityManager.close();
-		entityManagerFactory.close();
 		return recordList;
 	}
 
@@ -134,7 +130,6 @@ public class AdminDAOImple implements AdminDAO {
 		TypedQuery<UserDetails> query = entityManager.createQuery(jpql, UserDetails.class);
 		List<UserDetails> records = query.getResultList();
 		entityManager.close();
-		entityManagerFactory.close();
 		return records;
 	}
 
@@ -145,7 +140,6 @@ public class AdminDAOImple implements AdminDAO {
 		TypedQuery<TicketsInfo> query = entityManager.createQuery(jpql, TicketsInfo.class);
 		List<TicketsInfo> records = query.getResultList();
 		entityManager.close();
-		entityManagerFactory.close();
 		return records;
 	}
 

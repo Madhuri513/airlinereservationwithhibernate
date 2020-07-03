@@ -75,9 +75,14 @@ public class AdminController {
 					log.info("Flights details are:");
 
 					List<FlightDetails> records = adminServices.viewFlightDetails();
-
+					log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
+							"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "CAPACITY",
+							"TICKET_PRICE"));
 					for (FlightDetails details : records) {
-						log.info(details);
+						log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s", details.getFlightId(),
+								details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
+								details.getDepartureTime(), details.getDepartureDate(), details.getSeats(),
+								details.getPrice()));
 					}
 
 					break;
@@ -231,10 +236,15 @@ public class AdminController {
 
 						flightId = scan.nextInt();
 						List<FlightDetails> search = adminServices.searchFlight(flightId);
-
+						log.info(String.format("%-10s %-10s %-13s %-15s %-15s %-15s %-15s %s", "FLIGHT_ID", "FLIGHT_NAME",
+								"ARRIVAL_TIME", "ARRIVAL_DATE", "DEPARTURE_TIME", "DEPARTURE_DATE", "CAPACITY",
+								"TICKET_PRICE"));
 						if (search != null) {
 							for (FlightDetails details : search) {
-								log.info(details);
+								log.info(String.format("%-10s %-15s %-10s %-17s %-15s %-15s %-15s %s", details.getFlightId(),
+										details.getFlightName(), details.getArrivalTime(), details.getArrivalDate(),
+										details.getDepartureTime(), details.getDepartureDate(), details.getSeats(),
+										details.getPrice()));
 							}
 						}
 
@@ -271,8 +281,11 @@ public class AdminController {
 
 					log.info("User details are:");
 					List<UserDetails> users = adminServices.viewAllUserDetails();
+					log.info(String.format("%-10s %-25s %-25s %s", "USER_ID", "USER_NAME",
+							"EMAIL", "ROLE"));
 					for (UserDetails details : users) {
-						log.info(details);
+						log.info(String.format("%-10s %-25s %-25s %s", details.getUserId(),
+								details.getName(), details.getMailId(),	details.getRole()));
 					}
 					break;
 
@@ -280,8 +293,11 @@ public class AdminController {
 
 					log.info("Ticket Booking details are:");
 					List<TicketsInfo> bookings = adminServices.viewTicketsInfos();
+					log.info(String.format("%-10s %-15s %-15s %s", "TICKET_ID", "USER_ID",
+							"FLIGHT_ID", "NUMBER_OF_SEATS"));
 					for (TicketsInfo details : bookings) {
-						log.info(details);
+						log.info(String.format("%-10s %-15s %-15s %s", details.getTicketId(),
+								details.getUserId(), details.getFlightId(),	details.getNoOfSeatsBooked()));
 					}
 					break;
 
